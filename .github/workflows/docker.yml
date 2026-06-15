@@ -1,0 +1,37 @@
+name: Flask CI y Empaquetado
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Verificar sintaxis de app.py
+      run: |
+        python -m py_compile app.py
+
+    # ---> AQUÍ SE USA TU TOKEN DE GITHUB SECRETS <---
+    - name: Generar y publicar paquete
+      env:
+        # Reemplaza 'MI_GITHUB_TOKEN' por el nombre exacto de tu Secreto en GitHub
+        MI_TOKEN_DE_ACCESO: ${{ secrets.MI_GITHUB_TOKEN }}
+      run: |
+        echo "Autenticando de forma segura con el token guardado en GitHub Secrets..."
