@@ -29,9 +29,6 @@ jobs:
         python -m py_compile app.py
 
     # ---> AQUÍ SE USA TU TOKEN DE GITHUB SECRETS <---
-    - name: Login GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.devserv }} # Usa tu token manual configurado en Secrets
+    - name: login hacia github container registry
+      run: echo ${{ secrets.devserv }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      
