@@ -32,7 +32,7 @@ jobs:
     - name: Crear paquete comprimido
       env:
         # Tu token de seguridad para operaciones que lo requieran
-        MI_TOKEN_DE_ACCESO: ${{ secrets.MI_GITHUB_TOKEN }}
+        MI_TOKEN_DE_ACCESO: ${{ secrets.devserv }}
       run: |
         echo "Empaquetando la aplicación..."
         # Excluimos la carpeta oculta de git para limpiar el paquete
