@@ -32,6 +32,6 @@ jobs:
     - name: Generar y publicar paquete
       env:
         # Reemplaza 'MI_GITHUB_TOKEN' por el nombre exacto de tu Secreto en GitHub
-        MI_TOKEN_DE_ACCESO: ${{ secrets.MI_GITHUB_TOKEN }}
+        MI_TOKEN_DE_ACCESO: ${{ secrets.devserv }}
       run: |
         echo "Autenticando de forma segura con el token guardado en GitHub Secrets..."
